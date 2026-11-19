@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#09090a">
+  <link rel="icon" type="image/png" href="img/marca/favicon-64.png">
+  <link rel="apple-touch-icon" href="img/marca/apple-touch-icon.png">
+  <title>825AutoSpa | Autolavado y Detallado</title>
+  <meta name="description" content="825AutoSpa: lavado, encerado y detallado profesional para tu auto.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap">
+  <link rel="stylesheet" href="styles.css?v=16">
+</head>
+<body data-page="inicio">
+
+  <!-- Intro tipo tráiler (ver intro.js) -->
+  <div class="intro" id="intro" role="dialog" aria-label="Intro de 825AutoSpa">
+    <div class="intro__stage"></div>
+    <div class="intro__flash" aria-hidden="true"></div>
+    <p class="intro__brand">825AutoSpa <span>— Detallado de precisión</span></p>
+    <div class="intro__gate">
+      <img class="intro__gate-logo" src="img/marca/logo-825-400.png" width="422" height="400" alt="825 AutoSpa">
+      <p class="intro__gate-text">Mejor con sonido</p>
+      <div class="intro__gate-actions">
+        <button class="btn" type="button" data-intro="sound"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg><span>Entrar con sonido</span></button>
+        <button class="btn btn--glass" type="button" data-intro="mute"><span>Sin sonido</span></button>
+      </div>
+    </div>
+    <button class="intro__mute" type="button" aria-pressed="false" aria-label="Silenciar">
+      <svg class="intro__icon-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>
+      <svg class="intro__icon-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M17 9l5 6M22 9l-5 6"/></svg>
+    </button>
+    <img class="intro__logo" src="img/marca/logo-825-400.png" width="422" height="400" alt="825 AutoSpa">
+    <button class="intro__skip" type="button">Saltar intro <span aria-hidden="true">→</span></button>
+    <span class="intro__bar" aria-hidden="true"><span></span></span>
+  </div>
+
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo" aria-label="825 AutoSpa, inicio">
+        <img class="logo__img" src="img/marca/logo-825-120.png" width="127" height="120" alt="">
+        <span><span class="logo__num">825</span><span class="logo__txt">AutoSpa</span></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav" id="nav">
+        <a href="index.html" data-nav="inicio">Inicio</a>
+        <a href="servicios.html" data-nav="servicios">Servicios</a>
+        <a href="precios.html" data-nav="precios">Precios</a>
+        <a href="ubicacion.html" data-nav="ubicacion">Ubicación</a>
+        <a href="contacto.html" class="btn btn--sm" data-nav="contacto">Agendar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Película por escenas: llegada, espuma, enjuague, detalle, final (ver film.js) -->
+    <section class="film" id="film" aria-label="Recorrido del servicio en video">
+      <div class="film__sticky">
+        <div class="film__scenes">
+          <div class="film__scene is-active" style="--pos: 50%"><video muted playsinline loop preload="auto" poster="img/video/posters/01-llegada.jpg" data-src="img/video/01-llegada.mp4" aria-hidden="true"></video></div>
+          <div class="film__scene" style="--pos: 42%"><video muted playsinline loop preload="none" poster="img/video/posters/02-espuma.jpg" data-src="img/video/02-espuma.mp4" aria-hidden="true"></video></div>
+          <div class="film__scene" style="--pos: 18%"><video muted playsinline loop preload="none" poster="img/video/posters/03-enjuague.jpg" data-src="img/video/03-enjuague.mp4" aria-hidden="true"></video></div>
+          <div class="film__scene" style="--pos: 55%"><video muted playsinline loop preload="none" poster="img/video/posters/04-secado.jpg" data-src="img/video/04-secado.mp4" aria-hidden="true"></video></div>
+          <div class="film__scene" style="--pos: 50%"><video muted playsinline loop preload="none" poster="img/video/posters/05-final.jpg" data-src="img/video/05-final.mp4" aria-hidden="true"></video></div>
+        </div>
+        <div class="film__shade" aria-hidden="true"></div>
+        <div class="film__flash" aria-hidden="true"></div>
+
+        <span class="film__bar" aria-hidden="true"><span></span></span>
+
+        <div class="film__copy">
+          <div class="film__text is-active">
+            <h1 class="film__title">Tráelo<br><span class="is-outline">sucio.</span></h1>
+            <p class="film__lead">Nosotros nos encargamos del lodo. Lavado desde $80.</p>
+            <div class="film__actions">
+              <a href="precios.html" class="btn">Ver precios</a>
+              <a href="contacto.html" class="btn btn--glass">Agendar</a>
+            </div>
+          </div>
+          <div class="film__text">
+            <h2 class="film__title film__title--step">Espuma que<br>afloja el lodo.</h2>
+          </div>
+          <div class="film__text">
+            <h2 class="film__title film__title--step">Agua a presión,<br>cero rayones.</h2>
+          </div>
+          <div class="film__text">
+            <h2 class="film__title film__title--step">Microfibra,<br>pieza por pieza.</h2>
+          </div>
+          <div class="film__text">
+            <p class="film__title">Llévatelo<br><span class="is-gradient">brillando.</span></p>
+            <p class="film__lead">Que tu auto hable bien de ti.</p>
+            <div class="film__actions">
+              <a href="precios.html" class="btn">Ver precios</a>
+              <a href="contacto.html" class="btn btn--glass">Agendar ahora</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="marquee" aria-label="Servicios: lavado a mano, espuma activa, encerado, pulido, vestiduras, motor y rines, interiores, faros">
+      <div class="marquee__track"><div class="marquee__group"><span class="marquee__item">Lavado a mano</span><span class="marquee__dot"></span><span class="marquee__item">Espuma activa</span><span class="marquee__dot"></span><span class="marquee__item">Encerado</span><span class="marquee__dot"></span><span class="marquee__item">Pulido</span><span class="marquee__dot"></span><span class="marquee__item">Vestiduras</span><span class="marquee__dot"></span><span class="marquee__item">Motor y rines</span><span class="marquee__dot"></span><span class="marquee__item">Interiores</span><span class="marquee__dot"></span><span class="marquee__item">Faros</span><span class="marquee__dot"></span></div><div class="marquee__group" aria-hidden="true"><span class="marquee__item">Lavado a mano</span><span class="marquee__dot"></span><span class="marquee__item">Espuma activa</span><span class="marquee__dot"></span><span class="marquee__item">Encerado</span><span class="marquee__dot"></span><span class="marquee__item">Pulido</span><span class="marquee__dot"></span><span class="marquee__item">Vestiduras</span><span class="marquee__dot"></span><span class="marquee__item">Motor y rines</span><span class="marquee__dot"></span><span class="marquee__item">Interiores</span><span class="marquee__dot"></span><span class="marquee__item">Faros</span><span class="marquee__dot"></span></div></div>
+    </section>
+
+    <section class="stats" aria-label="Por qué elegirnos">
+      <div class="container stats__inner">
+        <div class="stat"><strong><b data-count="100">100</b><span>%</span></strong><small>Lavado a mano</small></div>
+        <div class="stat"><strong><b data-count="4">4</b></strong><small>Pasos hasta el brillo</small></div>
+        <div class="stat"><strong><b data-count="7">7</b><span>/7</span></strong><small>Abierto toda la semana</small></div>
+        <div class="stat"><strong>0</strong><small>Citas obligatorias</small></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <a href="index.html" class="logo" aria-label="825 AutoSpa, inicio"><img class="logo__img" src="img/marca/logo-825-120.png" width="127" height="120" alt=""></a>
+        <p class="footer__tag">Que tu auto hable bien de ti.</p>
+        <p>Avenida Cholula #19, Sanctorum,<br>Cuautlancingo, Puebla.<br>Todos los días de 9:00 a 18:00.</p>
+      </div>
+
+      <div class="footer__col">
+        <h2 class="footer__title">Contacto</h2>
+        <ul class="footer__links">
+          <li><a href="https://wa.me/522215689753?text=Hola%20825AutoSpa%2C%20quiero%20agendar%20un%20lavado" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><span>WhatsApp 221 568 9753</span></a></li>
+          <li><a href="tel:+522215689753"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span>Llamar</span></a></li>
+          <li><a href="https://maps.app.goo.gl/2it9x1WKRFD1ucqZ7" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><span>Cómo llegar</span></a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h2 class="footer__title">Redes</h2>
+        <ul class="footer__links">
+          <li><a href="https://www.instagram.com/825autospa/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6"/></svg><span>Instagram @825autospa</span></a></li>
+          <li><a href="https://maps.app.goo.gl/2it9x1WKRFD1ucqZ7" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.6 5.6 6.1.6-4.6 4.1 1.3 6-5.4-3.1-5.4 3.1 1.3-6L3.3 9.2l6.1-.6z"/></svg><span>Reseñas en Google</span></a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col footer__share">
+        <h2 class="footer__title">Comparte</h2>
+        <div class="qr" data-qr>
+          <div class="qr__code" role="img" aria-label="Código QR del sitio de 825 AutoSpa"></div>
+          <div class="qr__actions">
+            <button class="share-btn" type="button" data-share><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3M7 8l5-5 5 5M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg><span>Compartir</span></button>
+            <a class="share-btn share-btn--ghost qr__dl" download="825autospa-qr.png" href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span>Descargar QR</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer__bottom">
+      <p>© <span id="year"></span> 825AutoSpa</p>
+      <nav class="footer__legal" aria-label="Legal"><a href="aviso-privacidad.html">Aviso de privacidad</a><a href="terminos.html">Términos y condiciones</a></nav>
+    </div>
+  </footer>
+
+  <a class="wa-float" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp"
+     href="https://wa.me/522215689753?text=Hola%20825AutoSpa%2C%20quiero%20agendar%20un%20lavado">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>
+  </a>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+  <script src="script.js?v=16"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="intro-audio.js?v=16"></script>
+  <script src="intro.js?v=16"></script>
+  <script src="film.js?v=16"></script>
+</body>
+</html>
