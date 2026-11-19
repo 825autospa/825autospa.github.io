@@ -50,8 +50,12 @@
   videos[0].addEventListener('loadeddata', () => section.classList.add('is-ready'), { once: true });
   setTimeout(() => section.classList.add('is-ready'), 2500); // por si el video tarda
 
-  // ---------- Scroll suave (Lenis) ----------
-  if (window.Lenis && !reduceMotion) {
+  // Pantallas táctiles: el scroll nativo del teléfono es más fluido que cualquier suavizado
+  const touch = matchMedia('(hover: none), (pointer: coarse)').matches;
+  const lite = touch || light;   // modo ligero: teléfono, pantalla angosta o ahorro de datos
+
+  // ---------- Scroll suave (Lenis) — solo con mouse ----------
+  if (window.Lenis && !reduceMotion && !touch) {
     const lenis = new window.Lenis({ lerp: .085, smoothWheel: true, wheelMultiplier: .9 });
     if (document.documentElement.classList.contains('is-intro')) {
       lenis.stop();
@@ -118,7 +122,8 @@
     setScene(i);
 
     // Cámara: acercamiento lento dentro de la escena
-    if (!reduceMotion) scenes[i].style.setProperty('--zoom', (1.04 + local * .1).toFixed(4));
+    // (en teléfono no: recalcular el video en cada movimiento del dedo es lo que más lo traba)
+    if (!reduceMotion && !lite) scenes[i].style.setProperty('--zoom', (1.04 + local * .1).toFixed(4));
 
     if (bar) bar.style.transform = `scaleX(${p.toFixed(4)})`;
     section.style.setProperty('--intro', (1 - clamp(f / .6)).toFixed(3));

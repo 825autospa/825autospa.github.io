@@ -56,10 +56,15 @@
   // Punto de enfoque en pantallas verticales (dónde está el auto en cada toma)
   const POS = { '01-llegada': '42%', '02-jabon': '58%', '03-gotas': '75%', '04-rines': '45%', '05-pano': '62%', '06-auto': '70%' };
 
-  const els = SHOTS.map(([src, start]) => {
+  // Teléfono: se cargan solo 2 tomas a la vez y se liberan al terminar
+  // (los iPhone tienen límite de videos abiertos y se traban si hay 6 cargando).
+  const LIGHT = matchMedia('(hover: none), (pointer: coarse), (max-width: 820px)').matches;
+
+  const els = SHOTS.map(([src, start], n) => {
     const v = document.createElement('video');
     // iOS solo reproduce solo si el video está en silencio y "en línea"
-    v.muted = true; v.defaultMuted = true; v.playsInline = true; v.preload = 'auto';
+    v.muted = true; v.defaultMuted = true; v.playsInline = true;
+    v.preload = (!LIGHT || n < 2) ? 'auto' : 'metadata';
     v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.setAttribute('aria-hidden', 'true');
     const name = src.split('/').pop().replace('.mp4', '');
     v.style.setProperty('--pos', POS[name] || '50%');
@@ -94,7 +99,14 @@
     // Si el teléfono no deja reproducir (ahorro de batería), no hay intro: directo a la página
     v.play().catch(err => { if (err && err.name === 'NotAllowedError') end(); });
     els.forEach((el, n) => el.classList.toggle('is-on', n === i));
-    if (i > 0) els[i - 1].pause();
+    if (i > 0) {
+      const prev = els[i - 1];
+      prev.pause();
+      if (LIGHT) { prev.removeAttribute('src'); prev.load(); }   // libera memoria en el teléfono
+    }
+    // La siguiente toma empieza a cargar mientras se ve esta
+    const next = els[i + 1];
+    if (next && next.preload !== 'auto') { next.preload = 'auto'; next.load(); }
     if (doFlash) { flash.classList.remove('is-on'); void flash.offsetWidth; flash.classList.add('is-on'); }
     if (sound()) sound().cut(i, dur, !!(SHOTS[i + 1] && SHOTS[i + 1][3]), i === SHOTS.length - 1);
 

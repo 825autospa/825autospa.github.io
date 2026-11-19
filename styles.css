@@ -938,3 +938,38 @@ a.svc__fine { position: relative; z-index: 2; text-decoration: underline; text-u
   .service:hover, .svc:hover, .quick:hover, .contact-card:hover { transform: none; box-shadow: none; }
   .svc:hover .svc__media img, .svc:hover .svc__media video { transform: scale(1.02); filter: saturate(.75) brightness(.78) contrast(1.05); }
 }
+
+/* =========================================================
+   MODO LIGERO (teléfonos y pantallas táctiles)
+   Quita lo que más le cuesta a un celular: filtros sobre video,
+   vidrio esmerilado (backdrop-filter), sombras difusas grandes
+   y animaciones con desenfoque. Se ve casi igual y va fluido.
+   ========================================================= */
+@media (hover: none), (pointer: coarse), (max-width: 700px) {
+  /* Video sin filtros: el teléfono ya no reprocesa cada cuadro */
+  .film__scene video, .intro__stage video, .svc__media video { filter: none !important; }
+  .film__scene video { transform: none !important; transition: none; will-change: auto; }
+  .film.is-ready .film__scenes { animation: none; }
+  .intro__stage video.is-on { animation: none; }
+  /* La intro conserva su tono oscuro con una capa más densa (barata) */
+  .intro__stage::after { background: radial-gradient(110% 80% at 50% 50%, rgba(0, 0, 0, .25) 30%, rgba(0, 0, 0, .85) 100%), linear-gradient(0deg, rgba(0, 0, 0, .55), transparent 35%); }
+
+  /* Sin vidrio esmerilado: fondos sólidos casi opacos */
+  .header { -webkit-backdrop-filter: none; backdrop-filter: none; background: rgba(9, 9, 10, .94); }
+  .header.header--dark { -webkit-backdrop-filter: none; backdrop-filter: none; background: linear-gradient(180deg, rgba(0, 0, 0, .78), rgba(0, 0, 0, .35)); }
+  .mbar { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; background: rgba(20, 20, 22, .97) !important; }
+  .btn--glass, .intro__skip, .intro__mute, .nav { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+  .btn--glass { background: rgba(30, 30, 33, .9); }
+  .intro__skip, .intro__mute { background: rgba(20, 20, 22, .8); }
+
+  /* Sin sombras difusas ni brillos con filtro */
+  .film__title, .film__title .is-outline, .page-hero h1 { text-shadow: none; }
+  .logo__img, .intro__gate-logo, .page-hero::before { filter: none; }
+  .intro.is-logo .intro__logo { filter: none; }
+  .btn, .share-btn, .svc, .price--featured, .quick--accent, .mbar__item--main { box-shadow: none; }
+
+  /* Animaciones de texto: solo movimiento, sin desenfoque */
+  .film__text { filter: none !important; }
+  .nav { filter: none !important; }
+  .reveal { transition: opacity .6s var(--ease-out), transform .7s var(--ease-out); }
+}
