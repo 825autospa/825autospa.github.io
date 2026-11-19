@@ -177,6 +177,7 @@ html.is-intro, html.is-intro body { overflow: hidden; }
   animation: introFade 1.2s .4s both;
 }
 .intro__brand span { color: rgba(255, 255, 255, .45); }
+@media (max-width: 600px) { .intro__brand { padding: 0 64px; } .intro__brand span { display: none; } }   /* no choca con el botón de sonido */
 .intro__skip {
   position: absolute; z-index: 3; left: 50%; bottom: 34px; transform: translateX(-50%);
   min-height: 36px; padding: .45em 1.3em; border-radius: 999px; cursor: pointer;
