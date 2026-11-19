@@ -14,10 +14,10 @@
 
   // Canción de la intro. Copia aquí el MP3 con licencia y suena sola.
   // Mientras el archivo no exista, suena la música generada por este código.
-  // Ahora: 'Drift Phonk' de Kulakovka (Alex Shulgin), licencia de contenido de Pixabay.
-  // Para usar 'Legacy' cuando tengas la licencia: cópiala como audio/legacy.mp3 y cambia la ruta aquí.
-  const MUSIC_FILE = 'audio/phonk.mp3';
-  const MUSIC_START = 15;         // segundo de la canción donde empieza la intro: así el drop (seg. ~27) cae en el logo
+  // Ahora: 'Timeless' (type beat estilo The Weeknd x Playboi Carti) de ECHOBEATS, licencia de contenido de Pixabay.
+  // Para usar otra canción con licencia: cópiala en audio/ y cambia la ruta aquí.
+  const MUSIC_FILE = 'audio/timeless.mp3';
+  const MUSIC_START = 12.9;       // el beat entra en el seg. 15.5 de la pista: así cae justo en el primer corte
   const BPM = 96;                 // ritmo del pulso
   const BEAT = 60 / BPM;
 
