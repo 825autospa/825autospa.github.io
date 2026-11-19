@@ -1,0 +1,14 @@
+Música de la intro
+==================
+
+Copia aquí la canción con licencia con este nombre exacto:
+
+    legacy.mp3
+
+La intro la reproduce sola (junto con los golpes de cada corte).
+Mientras el archivo no exista, suena la música generada por el código.
+
+Para empezar en otra parte de la canción, cambia MUSIC_START en intro-audio.js
+(por ejemplo 30 = empieza en el segundo 30).
+
+Importante: usa la canción solo con permiso del artista o su disquera.

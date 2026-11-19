@@ -12,11 +12,14 @@
   const AC = window.AudioContext || window.webkitAudioContext;
   if (!AC) return;
 
-  const MUSIC_FILE = '';          // por ejemplo 'audio/intro.mp3'
+  // Canción de la intro. Copia aquí el MP3 con licencia y suena sola.
+  // Mientras el archivo no exista, suena la música generada por este código.
+  const MUSIC_FILE = 'audio/legacy.mp3';
+  const MUSIC_START = 0;          // segundo de la canción donde empieza la intro (p. ej. 30 para entrar en el coro)
   const BPM = 96;                 // ritmo del pulso
   const BEAT = 60 / BPM;
 
-  let ctx, master, verbIn, noise, drone, droneFilter, music;
+  let ctx, master, verbIn, noise, drone, droneFilter, music, musicEl;
   let level = 0;                  // energía: sube con cada corte
   let beatOn = false, nextBeat = 0, step = 0, timer = 0;
   let muted = false, started = false;
@@ -169,11 +172,19 @@
       master.gain.setTargetAtTime(muted ? 0 : .85, ctx.currentTime, .25);
       startDrone(ctx.currentTime);
       if (MUSIC_FILE) {
-        music = new Audio(MUSIC_FILE);
-        music.crossOrigin = 'anonymous';
-        const m = ctx.createMediaElementSource(music), mg = ctx.createGain(); mg.gain.value = .9;
+        // Si el archivo todavía no existe (404) o falla, se queda la música generada
+        const el = new Audio(MUSIC_FILE);
+        el.preload = 'auto';
+        el.addEventListener('error', () => { if (music === el) music = null; });
+        el.addEventListener('playing', () => {
+          music = el;                                   // a partir de aquí el ritmo lo pone la canción
+          if (drone) drone.gain.setTargetAtTime(0.0001, ctx.currentTime, .4);
+        }, { once: true });
+        try { el.currentTime = MUSIC_START; } catch (e) {}
+        const m = ctx.createMediaElementSource(el), mg = ctx.createGain(); mg.gain.value = .9;
         m.connect(mg).connect(master);
-        music.play().catch(() => { music = null; });
+        el.play().catch(() => {});
+        musicEl = el;
       }
       timer = setInterval(schedule, 25);
     },
@@ -201,7 +212,7 @@
       master.gain.cancelScheduledValues(t);
       master.gain.setValueAtTime(master.gain.value, t);
       master.gain.linearRampToValueAtTime(0, t + fade);
-      if (music) { const m = music; setTimeout(() => m.pause(), fade * 1000); }
+      if (musicEl) { const m = musicEl; setTimeout(() => m.pause(), fade * 1000); }
       clearInterval(timer);
       setTimeout(() => ctx && ctx.close(), fade * 1000 + 200);
     },
