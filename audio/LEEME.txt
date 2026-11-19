@@ -1,9 +1,13 @@
 Música de la intro
 ==================
 
-Copia aquí la canción con licencia con este nombre exacto:
+Ahora suena phonk.mp3: "Drift Phonk" de Alex Shulgin (Kulakovka), licencia de Pixabay.
+
+Para usar "Legacy" cuando tengas la licencia, cópiala aquí como:
 
     legacy.mp3
+
+y cambia MUSIC_FILE en intro-audio.js a 'audio/legacy.mp3'.
 
 La intro la reproduce sola (junto con los golpes de cada corte).
 Mientras el archivo no exista, suena la música generada por el código.

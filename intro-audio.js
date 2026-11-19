@@ -14,8 +14,10 @@
 
   // Canción de la intro. Copia aquí el MP3 con licencia y suena sola.
   // Mientras el archivo no exista, suena la música generada por este código.
-  const MUSIC_FILE = 'audio/legacy.mp3';
-  const MUSIC_START = 0;          // segundo de la canción donde empieza la intro (p. ej. 30 para entrar en el coro)
+  // Ahora: 'Drift Phonk' de Kulakovka (Alex Shulgin), licencia de contenido de Pixabay.
+  // Para usar 'Legacy' cuando tengas la licencia: cópiala como audio/legacy.mp3 y cambia la ruta aquí.
+  const MUSIC_FILE = 'audio/phonk.mp3';
+  const MUSIC_START = 15;         // segundo de la canción donde empieza la intro: así el drop (seg. ~27) cae en el logo
   const BPM = 96;                 // ritmo del pulso
   const BEAT = 60 / BPM;
 
