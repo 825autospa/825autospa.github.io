@@ -255,3 +255,33 @@ if (window.qrcode && shareUrl) {
 } else {
   document.querySelectorAll('[data-qr] .qr__code, .qr__dl, .qr__logo').forEach(el => { el.hidden = true; });
 }
+
+// =========================================================
+// Teléfono: barra de acciones abajo (WhatsApp · Llamar · Llegar)
+// y menú que bloquea el scroll de atrás mientras está abierto.
+// =========================================================
+(() => {
+  const WA = 'https://wa.me/522215689753?text=' + encodeURIComponent('Hola 825AutoSpa, quiero agendar un lavado');
+  const icon = d => `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${d}"/></svg>`;
+  const bar = document.createElement('nav');
+  bar.className = 'mbar';
+  bar.setAttribute('aria-label', 'Acciones rápidas');
+  bar.innerHTML =
+    `<a class="mbar__item mbar__item--main" href="${WA}" target="_blank" rel="noopener">${icon('M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z')}<span>WhatsApp</span></a>` +
+    `<a class="mbar__item" href="tel:+522215689753">${icon('M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2')}<span>Llamar</span></a>` +
+    `<a class="mbar__item" href="https://maps.app.goo.gl/2it9x1WKRFD1ucqZ7" target="_blank" rel="noopener">${icon('M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z')}<span>Llegar</span></a>`;
+  document.body.appendChild(bar);
+
+  // Menú: entrada escalonada y bloqueo del fondo
+  const toggle = document.getElementById('navToggle');
+  const menu = document.getElementById('nav');
+  if (toggle && menu) {
+    menu.querySelectorAll('a').forEach((a, i) => a.style.setProperty('--i', i));
+    const sync = () => document.documentElement.classList.toggle('nav-open', menu.classList.contains('is-open'));
+    toggle.addEventListener('click', () => requestAnimationFrame(sync));
+    addEventListener('keydown', e => {
+      if (e.key === 'Escape' && menu.classList.contains('is-open')) { toggle.click(); }
+    });
+    menu.addEventListener('click', e => { if (e.target.closest('a')) document.documentElement.classList.remove('nav-open'); });
+  }
+})();

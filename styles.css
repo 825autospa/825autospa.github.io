@@ -792,3 +792,149 @@ a.svc__fine { position: relative; z-index: 2; text-decoration: underline; text-u
   :root { --muted: var(--text); --hairline: currentColor; }
   .card, .hours { outline: 1px solid var(--text); }
 }
+
+/* =========================================================
+   TELÉFONO (≤ 700 px) — capa dedicada
+   Pensado para una mano: acciones abajo, al alcance del pulgar;
+   títulos grandes que llenan la pantalla; menos espacio muerto.
+   ========================================================= */
+
+/* Barra de acciones (WhatsApp · Llamar · Llegar). Solo en teléfono. */
+.mbar { display: none; }
+@media (max-width: 700px) {
+  :root { --wide: 108%; }   /* un poco menos ancha: los títulos pueden ser más grandes */
+
+  body { padding-bottom: calc(84px + env(safe-area-inset-bottom)); }
+  .wa-float { display: none; }
+
+  .mbar {
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 6px;
+    position: fixed; z-index: 70; left: 10px; right: 10px; bottom: max(10px, env(safe-area-inset-bottom));
+    padding: 6px; border-radius: 20px;
+    background: rgba(18, 18, 20, .78); border: 1px solid rgba(255, 255, 255, .1);
+    -webkit-backdrop-filter: blur(22px) saturate(180%); backdrop-filter: blur(22px) saturate(180%);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, .55), inset 0 1px 0 rgba(255, 255, 255, .06);
+    transition: transform .5s var(--spring), opacity .3s;
+  }
+  .mbar__item {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+    min-height: 52px; border-radius: 14px; color: var(--text);
+    font-size: .62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    transition: background-color .2s, transform .1s ease-out;
+  }
+  .mbar__item svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .mbar__item:active { transform: scale(.94); background: rgba(255, 255, 255, .08); }
+  .mbar__item--main { flex-direction: row; gap: 8px; background: var(--accent); color: var(--on-accent); font-size: .74rem; box-shadow: 0 8px 24px -8px var(--accent-glow); }
+  .mbar__item--main:active { background: var(--accent-hover); }
+  /* Durante la intro o con el menú abierto, la barra se esconde hacia abajo */
+  html.is-intro .mbar, html.nav-open .mbar { transform: translateY(140%); opacity: 0; pointer-events: none; }
+
+  /* ---- Encabezado ---- */
+  .header__inner { height: 56px; }
+  .container { width: calc(100% - 40px); }
+  .logo { font-size: .95rem; gap: .45rem; }
+  .logo__img { height: 36px; }
+  .nav-toggle { width: 48px; height: 48px; margin-right: -12px; gap: 6px; }
+  .nav-toggle span { width: 22px; height: 2px; border-radius: 2px; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+  .nav { top: 56px !important; height: calc(100vh - 56px) !important; height: calc(100dvh - 56px) !important; padding: 12px 24px calc(32px + env(safe-area-inset-bottom)) !important; }
+  .nav a:not(.btn) { font-size: 1.7rem !important; padding: 16px 0 !important; }
+  .nav.is-open a { animation: navIn .6s var(--spring) both; animation-delay: calc(var(--i, 0) * 45ms + 60ms); }
+  html.nav-open, html.nav-open body { overflow: hidden; }
+
+  /* ---- Video del inicio ---- */
+  .film__copy { bottom: calc(100px + env(safe-area-inset-bottom)) !important; }
+  .film__title { font-size: clamp(2.5rem, 12vw, 4rem) !important; line-height: .88; }
+  .film__title--step { font-size: clamp(1.9rem, 8.6vw, 2.9rem) !important; }
+  .film__lead { font-size: 1.02rem; max-width: 30ch; }
+  .film__actions { gap: 8px; }
+  .film__actions .btn { min-height: 48px; }
+  .film__shade { background:
+      linear-gradient(0deg, rgba(0, 0, 0, .92) 0%, rgba(0, 0, 0, .55) 38%, rgba(0, 0, 0, 0) 62%),
+      linear-gradient(180deg, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, 0) 18%); }
+
+  /* ---- Banda y cifras ---- */
+  .marquee { padding: 22px 0; }
+  .marquee__item { font-size: 2.1rem; }
+  .stat { padding: 22px 4px 22px 16px; }
+  .stat strong { font-size: 2.4rem; }
+  .stat small { font-size: .62rem; letter-spacing: .12em; }
+
+  /* ---- Encabezados de páginas internas: compactos ---- */
+  .page-hero { padding: 104px 0 40px; }
+  .page-hero::before { height: 90px; opacity: .55; }
+  .page-hero h1 { font-size: clamp(2.5rem, 12.5vw, 3.6rem) !important; }
+  .page-hero__lead { font-size: 1rem; }
+  .page-hero--legal h1 { font-size: clamp(2rem, 9vw, 2.6rem) !important; }
+  .eyebrow { font-size: .68rem; margin-bottom: .8em; }
+
+  /* ---- Secciones ---- */
+  .section { padding: 48px 0 !important; }
+  .page-hero + .section { padding-top: 32px !important; }
+  .section__head { margin-bottom: 1.8rem; }
+  .section__head h2 { font-size: clamp(2rem, 9.5vw, 2.8rem); }
+  .center-link { margin-top: 2rem; }
+  .card { padding: 24px 20px; border-radius: 16px; }
+
+  /* Servicios */
+  .bento { grid-auto-rows: 210px; gap: 10px; }
+  .svc { border-radius: 16px; }
+  .svc h3 { font-size: 1.05rem; }
+  .svc--big h3 { font-size: 1.9rem; }
+  .svc p { font-size: .9rem; }
+  .svc--big p { font-size: .95rem; }
+  .svc__body { padding: 18px; }
+
+  /* Precios */
+  .price--hero .price__amount { font-size: 3.6rem; }
+  .extras { margin-top: 2.6rem; }
+  .extras h3 { font-size: 1.4rem; }
+  .extras__list--quote { grid-template-columns: 1fr; }
+  .extras__list--quote a { min-height: 64px; padding: .8em 0; }
+
+  /* Contacto: tarjetas compactas en renglón */
+  .grid--contact { gap: 10px; }
+  .contact-card { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 2px 12px; padding: 18px 18px; }
+  .contact-card h3 { margin: 0; font-size: .95rem; }
+  .contact-card p { grid-column: 1; margin: 0; font-size: .85rem; }
+  .contact-card__value { grid-column: 2; grid-row: 1 / span 2; font-size: .9rem; text-align: right; }
+  .share-panel { gap: 28px; }
+  .share-panel h2 { font-size: 1.9rem; }
+  .qr--big { justify-self: center; }
+  .qr--big .qr__code { width: min(260px, 70vw); }
+
+  /* Ubicación */
+  .location__map, .location__map iframe { min-height: 280px; }
+  .hours th, .hours td { padding: .85em 1em; }
+  .split { gap: 20px; }
+
+  /* Legales: índice deslizable en una sola línea */
+  .legal__toc { flex-wrap: nowrap; overflow-x: auto; margin-inline: -20px; padding: 0 20px 6px; scrollbar-width: none; }
+  .legal__toc::-webkit-scrollbar { display: none; }
+  .legal__toc a { flex: none; }
+  .legal { font-size: .98rem; }
+
+  /* Pie de página: más compacto (las acciones ya están en la barra de abajo) */
+  .footer { padding: 40px 0 28px !important; }
+  .footer__grid { gap: 28px; }
+  .footer .logo__img { height: 60px; }
+  .footer__grid > .footer__col:nth-child(2) { display: none; }   /* contacto ya está en la barra de abajo */
+  .footer__links a { font-size: .85rem; }
+  .footer__share .qr { grid-template-columns: auto 1fr; align-items: center; column-gap: 16px; }
+  .footer__share .qr__code { width: 112px; }
+  .footer__share .qr__actions { flex-direction: column; }
+  .footer__bottom { margin-top: 28px; }
+
+  /* Intro */
+  .intro__gate-actions { flex-direction: column; width: min(300px, 80vw); }
+  .intro__gate-actions .btn { width: 100%; min-height: 50px; }
+  .intro__skip { bottom: calc(24px + env(safe-area-inset-bottom)); }
+}
+@keyframes navIn { from { opacity: 0; transform: translateY(14px); } }
+
+/* En pantallas táctiles no hay "hover": se quitan los efectos que se quedarían pegados */
+@media (hover: none) {
+  .service:hover, .svc:hover, .quick:hover, .contact-card:hover { transform: none; box-shadow: none; }
+  .svc:hover .svc__media img, .svc:hover .svc__media video { transform: scale(1.02); filter: saturate(.75) brightness(.78) contrast(1.05); }
+}
